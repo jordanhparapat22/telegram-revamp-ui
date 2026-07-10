@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form to Telegram Modern</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Container Card Form */
+    .telegram-card {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Bagian Judul (Header) */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header h2 {
+      color: #1a1a1a;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Warna biru khas Telegram untuk Icon */
+    .header h2 i {
+      color: #0088cc; 
+      font-size: 28px;
+    }
+
+    .header p {
+      color: #666666;
+      font-size: 14px;
+    }
+
+    /* Grup Input Form */
+    .input-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-group label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 8px;
+    }
+
+    .input-group input, 
+    .input-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      transition: all 0.3s ease;
+      background-color: #fafafa;
+    }
+
+    /* Efek ketika form sedang diketik */
+    .input-group input:focus, 
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #0088cc;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(0, 136, 204, 0.1);
+    }
+
+    /* Tombol Submit */
+    .btn-submit {
+      width: 100%;
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: #0077b3; /* Biru Telegram yang lebih gelap saat di-hover */
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98); /* Efek mengecil saat diklik */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="telegram-card">
+    <div class="header">
+      <h2><i class="fab fa-telegram"></i> Form To Telegram</h2>
+      <p>Silakan isi data di bawah untuk mengirim pesan.</p>
+    </div>
+
+    <form id="telegramForm">
+      <div class="input-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+      </div>
+
+      <div class="input-group">
+        <label for="pesan">Pesan Anda</label>
+        <textarea id="pesan" rows="4" placeholder="Ketik pesan Anda di sini..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        Kirim ke Telegram <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('telegramForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah halaman reload
+      
+      const nama = document.getElementById('nama').value;
+      const pesan = document.getElementById('pesan').value;
+      
+      // Ganti dengan username Telegram tujuan (tanpa awalan @)
+      // Contoh: jika username-nya @cs_bantuan, tulis cs_bantuan
+      const usernameTelegram = "username_tujuan_anda"; 
+      
+      // Format pesan (menggunakan fungsi encodeURIComponent agar spasi dan enter terbaca dengan baik di url)
+      const teksPesan = `Halo, nama saya ${nama}.\n\n${pesan}`;
+      const formatPesan = encodeURIComponent(teksPesan);
+      
+      // Buka link Telegram
+      window.open(`https://t.me/${usernameTelegram}?text=${formatPesan}`, '_blank');
+    });
+  </script>
+
+</body>
+</html>
